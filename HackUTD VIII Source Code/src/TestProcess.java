@@ -7,7 +7,7 @@ public class TestProcess
 	public static void main(String[]args) throws IOException
 	{
 		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "text.bat");
-		File dir = new File("(add file location)");
+		File dir = new File("C:/Documents/GitHub");
 		pb.directory(dir);
 		Process p = pb.start();
 		
