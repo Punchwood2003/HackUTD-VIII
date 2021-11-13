@@ -1,19 +1,14 @@
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class TestProcess
 {
 	public static void main(String[]args) throws IOException
 	{
-		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "text.bat");
-		File dir = new File("C:");
-		pb.directory(dir);
-		Process p = pb.start();
+		Process stocksProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Stocks.bat");
+		Process cryptoProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Cryptos.bat");
 		
-		InputStream in = p.getInputStream();
-        for (int i = 0; i < in.available(); i++) {
-           System.out.println("" + in.read());
-        }
+		stocksProcess.destroy();
+		cryptoProcess.destroy();
+		
 	}
 }
