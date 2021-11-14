@@ -131,6 +131,11 @@ public class Crypto implements Comparable<Crypto> {
 		return output;
 	}
 	
+	/**
+	 * This method will display the relevant information such
+	 * as a Crypto's rank, name, and ticker
+	 * @return	Crypto information
+	 */
 	public String display() {
 		StringBuilder sb = new StringBuilder(this.name);
 		sb.setLength(30);

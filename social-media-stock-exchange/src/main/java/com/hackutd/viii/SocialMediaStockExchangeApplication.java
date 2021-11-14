@@ -57,6 +57,11 @@ public class SocialMediaStockExchangeApplication {
 		out.close();
 	}
 	
+	/**
+	 * This converts a String array into an ArrayList of Strings
+	 * @param arr	The String array
+	 * @return		The String ArrayList
+	 */
 	public ArrayList<String> toList(String[] arr) {
 		ArrayList<String> list = new ArrayList<String>();
 		for(String temp : arr) {
@@ -65,6 +70,13 @@ public class SocialMediaStockExchangeApplication {
 		return list;
 	}
 	
+	/**
+	 * Gets the StockWrappper objects that are needed
+	 * @param tickersAsList	An ArrayList of Strings that indicate 
+	 * 						the tickers that need to be checked
+	 * @return				The list of StockWrapper objects associated 
+	 * 						with the list of tickers passed
+	 */
 	public ArrayList<StockWrapper> getStocks(ArrayList<String> tickersAsList) {
 		ArrayList<StockWrapper> stockList = new ArrayList<StockWrapper>();
 		

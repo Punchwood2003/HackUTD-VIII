@@ -19,7 +19,7 @@ public class RefreshService {
 	
 	public RefreshService() {
 		this.stocksToRefresh = new HashMap<StockWrapper, Boolean>();
-		this.setRefreshEveryMinute();
+		this.setRefreshEvery15Seconds();
 	}
 	
 	public boolean shouldRefresh(final StockWrapper stock) {
@@ -30,11 +30,11 @@ public class RefreshService {
 		return stocksToRefresh.get(stock);
 	}
 	
-	public void setRefreshEveryMinute() {
+	public void setRefreshEvery15Seconds() {
 		scheduler.scheduleAtFixedRate(() ->
 			stocksToRefresh.forEach((stock, value) -> {
 				if(stock.getLastAccessed().isBefore(LocalDateTime.now().minus(this.refreshPeriod))) {
-					System.out.println("Setting should refresh " + stock.getStock().getSymbol());
+					// System.out.println("Setting should refresh " + stock.getStock().getSymbol());
 					stocksToRefresh.remove(stock);
 					stocksToRefresh.put(stock.withLastAccessed(LocalDateTime.now()), true);
 				}

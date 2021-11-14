@@ -131,6 +131,11 @@ public class Stock implements Comparable<Stock> {
 		return output;
 	}
 	
+	/**
+	 * This method will display the relevant information such
+	 * as a Stock's rank, name, and ticker
+	 * @return	Stock information
+	 */
 	public String display() {
 		StringBuilder sb = new StringBuilder(this.name);
 		sb.setLength(30);
