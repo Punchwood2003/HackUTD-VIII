@@ -5,8 +5,8 @@ public class TestProcess
 	@SuppressWarnings("unused")
 	public static void main(String[]args) throws IOException
 	{
-		Process stocksProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Stocks.bat"); // runs bat file to get stocks rankings
-		Process cryptoProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Cryptos.bat"); // runs bat file to get crypto rankings
+		
+		
 		
 	}
 	

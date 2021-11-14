@@ -27,7 +27,7 @@ public class StockReader {
 	 */
 	private String fileName = "top100Stocks.txt";
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		new StockReader().run();
 	}
 	
@@ -36,10 +36,25 @@ public class StockReader {
 	 * and initialize the tickerSymbols array containing the top 100 stock
 	 * Ticker Symbols.
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public void run() throws IOException {
+	public void run() throws IOException, InterruptedException {
+		/**
+		 * Runs the ScrapeApeWisdom_Stocks.bat file 
+		 * and waits until the file has finished 
+		 * executing before continuing to run
+		 * @author GabrielaHuerta
+		 */
+		Process stocksProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Stocks.bat");
+		stocksProcess.waitFor();
+		
+		/**
+		 * Moving forward...
+		 * @author MatthewSheldon
+		 */
 		// Create a BufferedReader to read from the top100Stocks.txt file
 		BufferedReader file = new BufferedReader(new FileReader(fileName));
+		
 		// Read in the entire line of input
 		String line = file.readLine();
 		// Remove unimportant text

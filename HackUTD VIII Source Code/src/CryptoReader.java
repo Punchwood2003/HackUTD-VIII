@@ -30,7 +30,7 @@ public class CryptoReader {
 	 */
 	private String fileName = "top100Cryptos.txt";
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		new CryptoReader().run();
 	}
 	
@@ -40,10 +40,25 @@ public class CryptoReader {
 	 * Ticker Symbols.
 	 * @throws IOException
 	 * @author MatthewSheldon
+	 * @throws InterruptedException 
 	 */
-	public void run() throws IOException {
+	public void run() throws IOException, InterruptedException {
+		/**
+		 * Runs the ScrapeApeWisdom_Cryptos.bat file 
+		 * and waits until the file has finished 
+		 * executing before continuing to run
+		 * @author GabrielaHuerta
+		 */
+		Process stocksProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Cryptos.bat");
+		stocksProcess.waitFor();
+		
+		/**
+		 * Moving forward...
+		 * @author MatthewSheldon
+		 */
 		// Create a BufferedReader to read from the top100Cryptos.txt file
 		BufferedReader file = new BufferedReader(new FileReader(fileName));
+		
 		// Read in the entire line of input
 		String line = file.readLine();
 		// Remove unimportant text
