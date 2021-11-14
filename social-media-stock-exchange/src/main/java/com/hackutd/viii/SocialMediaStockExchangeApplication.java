@@ -15,6 +15,8 @@ import com.hackutd.viii.social.TopTickers;
 import com.hackutd.viii.yahoofinance.StockService;
 import com.hackutd.viii.yahoofinance.StockWrapper;
 
+import yahoofinance.Stock;
+
 @SpringBootApplication
 public class SocialMediaStockExchangeApplication {
 	@Autowired
@@ -29,7 +31,7 @@ public class SocialMediaStockExchangeApplication {
 		stockService = new StockService();
 		
 		PrintWriter out = new PrintWriter("SocialMediaStockExchangeOutput.txt");
-		out.printf("| %-4s | %-30s | %-5s | %-13s |%n", "Rank", "Stock Name", "Ticker", "Current Price");
+		out.printf("| %-4s | %-30s | %-5s | %-13s | %8s |%n", "Rank", "Stock Name", "Ticker", "Current Price", "Reliable");
 		
 		TopTickers topTickers = new TopTickers();
 		ArrayList<String> asList = toList(topTickers.getTopStockTickers());
@@ -45,14 +47,28 @@ public class SocialMediaStockExchangeApplication {
 				String priceAsString = String.format("$%.2f", priceAsDouble);
 				String formattedPrice = String.format("%13s | ", priceAsString);
 				out.print(price == null ? String.format("%13s | ", "[N/A]") : formattedPrice);
-				out.println();
 			} catch(NullPointerException e) {
 				out.print(String.format("%13s | ", "[N/A]"));
-				out.println();
 			} catch(FileNotFoundException e) {
 				out.print(String.format("%13s | ", "[N/A]"));
+			}
+			try {
+				Stock currStock = stocks.get(i).getStock();
+				BigDecimal pe = currStock.getStats().getPe();
+				double peAsDouble = pe.doubleValue();
+				if(peAsDouble < 22.5) {
+					out.print(String.format("%8s |", "Yes"));
+					out.println();
+				}
+				else {
+					out.print(String.format("%8s |", "No"));
+					out.println();
+				}
+			} catch(NullPointerException e) {
+				out.print(String.format("%8s |", "[N/A]"));
 				out.println();
 			}
+			System.out.println(stocks.get(i).getStock().getStats());
 		}
 		out.close();
 	}
@@ -90,4 +106,12 @@ public class SocialMediaStockExchangeApplication {
 		}
 		return stockList;
 	}
+
+
+
+
+
+
+
 }
+
