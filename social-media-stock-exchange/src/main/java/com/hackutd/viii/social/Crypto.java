@@ -130,4 +130,10 @@ public class Crypto implements Comparable<Crypto> {
 		output += "\nUpvotes:\t\t" + this.upvotes;
 		return output;
 	}
+	
+	public String display() {
+		StringBuilder sb = new StringBuilder(this.name);
+		sb.setLength(30);
+		return String.format("| %-4d | %-30s | %-5s | ", this.rank, sb.toString(), this.ticker);
+	}
 }

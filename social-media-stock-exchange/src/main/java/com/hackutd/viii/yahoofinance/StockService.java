@@ -16,6 +16,10 @@ import yahoofinance.YahooFinance;
 public class StockService {
 	private final RefreshService refreshService;
 	
+	public StockService() {
+		this.refreshService = new RefreshService();
+	}
+	
 	public StockWrapper findStock(final String ticker) {
 		try {
 			return new StockWrapper(YahooFinance.get(ticker));
@@ -26,7 +30,7 @@ public class StockService {
 	}
 	
 	public List<StockWrapper> findStocks(final List<String> tickers) {
-		return tickers.stream().map(this::findStock).filter(Objects::nonNull).collect(Collectors.toList());
+		return tickers.stream().map(this::findStock).collect(Collectors.toList());
 	}
 	
 	public BigDecimal findPrice(final StockWrapper stock) throws IOException {

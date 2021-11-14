@@ -1,15 +1,12 @@
 package com.hackutd.viii;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hackutd.viii.social.TopTickers;
 import com.hackutd.viii.yahoofinance.StockService;
 import com.hackutd.viii.yahoofinance.StockWrapper;
 
@@ -33,20 +30,35 @@ class SocialMediaStockExchangeApplicationTests {
 		System.out.println(mean20DayPercent);
 	}
 	
-	@Test
-	void multiple() throws IOException, InterruptedException {
-		PrintWriter out = new PrintWriter("TestingOutput.txt");
-		TopTickers topTickers = new TopTickers();
-		String[] top100StockTickersArr = topTickers.getTopStockTickers();
-		ArrayList<String> asList = this.toList(top100StockTickersArr);
-		final List<StockWrapper> stocks = stockService.findStocks(asList);
-		
-		for(StockWrapper currWrapper : stocks) {
-			out.println(currWrapper.getStock());
-		}
-		out.close();
-		
-	}
+//	@Test
+//	void multiple() throws IOException, InterruptedException {
+//		PrintWriter out = new PrintWriter("TestingOutput.txt");
+//		out.printf("%-4s | %-30s | %-5s | %-14s%n", "Rank", "Stock Name", "Ticker", "Current Price");
+//		TopTickers topTickers = new TopTickers();
+//		ArrayList<String> asList = this.toList(topTickers.getTopStockTickers());
+//		final List<StockWrapper> stocks = stockService.findStocks(asList);
+//		for(int i = 0; i < asList.size(); i++) {
+//			String currTicker = asList.get(i);
+//			String infoForStock = topTickers.getInfoForStock(currTicker);
+//			out.print(infoForStock);
+//			try {
+//				BigDecimal price = stockService.findPrice(stocks.get(i));
+//				double priceAsDouble = price.doubleValue();
+//				String priceAsString = String.format("$%.2f", priceAsDouble);
+//				String formattedPrice = String.format("%14s | ", priceAsString);
+//				out.print(price == null ? String.format("", "[N/A]") : formattedPrice);
+//				out.println();
+//			} catch(NullPointerException e) {
+//				out.print("[N/A] | ");
+//				out.println();
+//			} catch(FileNotFoundException e) {
+//				out.print("[N/A] | ");
+//				out.println();
+//			}
+//		}
+//		out.close();
+//		
+//	}
 	
 	public ArrayList<String> toList(String[] arr) {
 		ArrayList<String> list = new ArrayList<String>();

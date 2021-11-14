@@ -130,4 +130,10 @@ public class Stock implements Comparable<Stock> {
 		output += "\nUpvotes:\t\t" + this.upvotes;
 		return output;
 	}
+	
+	public String display() {
+		StringBuilder sb = new StringBuilder(this.name);
+		sb.setLength(30);
+		return String.format("| %-4d | %-30s | %-6s | ", this.rank, sb.toString(), this.ticker);
+	}
 }

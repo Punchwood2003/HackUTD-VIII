@@ -137,7 +137,7 @@ public class StockReader {
 	 * Returns the HashMap of Ticker to Stock matchings
 	 * @return	A HashMap of ticker to Stock matchings
 	 */
-	public HashMap<String, Stock> getTickerToCryptoInfo() {
+	public HashMap<String, Stock> getTickerToStockInfo() {
 		return this.tickerToStockInfo;
 	}
 	
