@@ -1,12 +1,10 @@
 package com.hackutd.viii;
-import javax.swing.Timer;
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,15 +35,16 @@ class SocialMediaStockExchangeApplicationTests {
 	
 	@Test
 	void multiple() throws IOException, InterruptedException {
+		PrintWriter out = new PrintWriter("TestingOutput.txt");
 		TopTickers topTickers = new TopTickers();
 		String[] top100StockTickersArr = topTickers.getTopStockTickers();
 		ArrayList<String> asList = this.toList(top100StockTickersArr);
 		final List<StockWrapper> stocks = stockService.findStocks(asList);
 		
 		for(StockWrapper currWrapper : stocks) {
-			final BigDecimal price = stockService.findPrice(currWrapper);
-			System.out.println(currWrapper.getStock() + ": ");
+			out.println(currWrapper.getStock());
 		}
+		out.close();
 		
 	}
 	
