@@ -18,8 +18,10 @@ public class TestProcess
 		double sumOfEarnings = 0;
 		for(double share : pricesPerShare)
 			sumOfShares += share;
+		sumOfShares /= 5;
 		for(double earning : earningsPerShare)
 			sumOfEarnings += earning;
+		sumOfEarnings /= 5;
 		return sumOfShares/sumOfEarnings;
 	}
 	
@@ -64,6 +66,17 @@ public class TestProcess
 		return false;
 	}
 	
-	
+	public double getPriceToCashFlow(double[] priceShares, double[] cashFlows)
+	{
+		double sumOfShares = 0;
+		double sumOfCash = 0;
+		for(double share : priceShares)
+			sumOfShares += share;
+		sumOfShares /= 5;
+		for(double cash : cashFlows)
+			sumOfCash += cash;
+		sumOfCash /= 5;
+		return sumOfShares/sumOfCash;
+	}
 	
 }
