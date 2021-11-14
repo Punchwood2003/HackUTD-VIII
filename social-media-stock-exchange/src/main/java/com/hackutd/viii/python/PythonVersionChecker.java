@@ -3,6 +3,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * This class was originally going to be used to validate the version of Python 
+ * installed on the user's machine; however, we ended up finding a way to use
+ * the Yahoo Finance API using Java and didn't end up using this class. 
+ * This class is here for any potential use in the future
+ * @author MatthewSheldon
+ */
 public class PythonVersionChecker {
 	public boolean checkPythonInstallationVersion() throws IOException, InterruptedException {
 		Process runPythonVersion = Runtime.getRuntime().exec("PythonInstalationVersion.bat");
