@@ -1,19 +1,82 @@
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class TestProcess
 {
+	@SuppressWarnings("unused")
 	public static void main(String[]args) throws IOException
 	{
-		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "text.bat");
-		File dir = new File("C:");
-		pb.directory(dir);
-		Process p = pb.start();
+		Process stocksProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Stocks.bat"); // runs bat file to get stocks rankings
+		Process cryptoProcess = Runtime.getRuntime().exec("ScrapeApeWisdom_Cryptos.bat"); // runs bat file to get crypto rankings
 		
-		InputStream in = p.getInputStream();
-        for (int i = 0; i < in.available(); i++) {
-           System.out.println("" + in.read());
-        }
 	}
+	
+	// functions for 8 pillars
+	
+	public double getPE(double[] pricesPerShare, double[] earningsPerShare)
+	{
+		double sumOfShares = 0;
+		double sumOfEarnings = 0;
+		for(double share : pricesPerShare)
+			sumOfShares += share;
+		sumOfShares /= 5;
+		for(double earning : earningsPerShare)
+			sumOfEarnings += earning;
+		sumOfEarnings /= 5;
+		return sumOfShares/sumOfEarnings;
+	}
+	
+	public double getROIC(double income, double dividends, double totalCapital)
+	{
+		return (income-dividends)/totalCapital;
+	}
+	
+	public boolean hasRevGrow(double currentRev, double fiveYearsAgoRev)
+	{
+		if(currentRev > fiveYearsAgoRev)
+			return true;
+		return false;
+	}
+	
+	public boolean hasNetIncomeGrow(double currentRev, double currentExp, double fiveYearsAgoRev, double fiveYearsAgoExp)
+	{
+		if((currentRev-currentExp) > (fiveYearsAgoRev - fiveYearsAgoExp))
+			return true;
+		return false;
+	}
+	
+	public boolean getSharesOutstanding(double currentShares, double fiveYearsAgoShares)
+	{
+		if(currentShares > fiveYearsAgoShares)
+			return true;
+		return false;
+	}
+	
+	public double getLTL(double totalLongtermLiabilities, double[] freeCashFlow)
+	{
+		double sumOfFCF = 0;
+		for(double fcf : freeCashFlow)
+			sumOfFCF += fcf;
+		return totalLongtermLiabilities/sumOfFCF;
+	}
+	
+	public boolean hasCashFlowGrow(double currentCashFlow, double fiveYearsAgoCashFlow)
+	{
+		if(currentCashFlow > fiveYearsAgoCashFlow)
+			return true;
+		return false;
+	}
+	
+	public double getPriceToCashFlow(double[] priceShares, double[] cashFlows)
+	{
+		double sumOfShares = 0;
+		double sumOfCash = 0;
+		for(double share : priceShares)
+			sumOfShares += share;
+		sumOfShares /= 5;
+		for(double cash : cashFlows)
+			sumOfCash += cash;
+		sumOfCash /= 5;
+		return sumOfShares/sumOfCash;
+	}
+	
 }
