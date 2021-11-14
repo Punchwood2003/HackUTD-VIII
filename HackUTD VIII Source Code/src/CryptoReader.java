@@ -131,11 +131,24 @@ public class CryptoReader {
 			top100Tickers[i] = currTicker;
 		}
 		
-		for(int i = 0; i < 5; i++) {
-			System.out.println(this.tickerToCryptoInfo.get(this.top100Tickers[i]) + "\n");
-		}
-		
 		// Close the BufferedReader
 		file.close();
+	}
+	
+	/**
+	 * Returns the HashMap of Ticker to Crypto matchings
+	 * @return	A HashMap of ticker to Crypto matchings
+	 */
+	public HashMap<String, Crypto> getTickerToCryptoInfo() {
+		return this.tickerToCryptoInfo;
+	}
+	
+	/**
+	 * Returns the top 100 tickers for the 
+	 * top 100 Cryptocurencies according to Reddit
+	 * @return	A list of the top 100 tickers
+	 */
+	public String[] getTop100Tickers() {
+		return this.top100Tickers;
 	}
 }

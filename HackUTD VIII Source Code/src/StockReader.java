@@ -15,7 +15,7 @@ public class StockReader {
 	 * A HashMap that maps a Stock's ticker to its info.
 	 * This is where the top 100 stocks can be referenced
 	 */
-	private HashMap<String, Stock> tickerToCryptoInfo;
+	private HashMap<String, Stock> tickerToStockInfo;
 	
 	/**
 	 * An array indicating the top 100 tickers
@@ -63,7 +63,7 @@ public class StockReader {
 		line = line.substring(index1, index2);
 		
 		// Initialize the HashMap
-		tickerToCryptoInfo = new HashMap<String, Stock>();
+		tickerToStockInfo = new HashMap<String, Stock>();
 		// Initialize the top 100 tinkers
 		top100Tickers = new String[100];
 		
@@ -121,17 +121,30 @@ public class StockReader {
 			Stock currStock = new Stock(currRank, currTicker, currName, currMentions, currUpvotes, currRank24h, currMentions24h);
 			
 			// Map the current ticker to the current Stock object
-			tickerToCryptoInfo.put(currTicker, currStock);
+			tickerToStockInfo.put(currTicker, currStock);
 			
 			// Assign the ith top 100 ticker
 			top100Tickers[i] = currTicker;
 		}
 		
-		for(int i = 0; i < 5; i++) {
-			System.out.println(this.tickerToCryptoInfo.get(this.top100Tickers[i]) + "\n");
-		}
-		
 		// Close the BufferedReader
 		file.close();
+	}
+	
+	/**
+	 * Returns the HashMap of Ticker to Stock matchings
+	 * @return	A HashMap of ticker to Stock matchings
+	 */
+	public HashMap<String, Stock> getTickerToCryptoInfo() {
+		return this.tickerToStockInfo;
+	}
+	
+	/**
+	 * Returns the top 100 tickers for the 
+	 * top 100 Stocks according to Reddit
+	 * @return	A list of the top 100 tickers
+	 */
+	public String[] getTop100Tickers() {
+		return this.top100Tickers;
 	}
 }
