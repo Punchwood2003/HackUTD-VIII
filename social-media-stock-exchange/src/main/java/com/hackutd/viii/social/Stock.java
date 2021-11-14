@@ -1,49 +1,51 @@
+package com.hackutd.viii.social;
+
 /**
  * This class handles all of the important information about 
- * any given Cryptocurrency. This includes information like the rank
- * of that currency according to Reddit, the currency's ticker, the 
- * full name of the currency, the current mentions and the mentions 
+ * any given stock. This includes information like the rank
+ * of that stock according to Reddit, the stock's ticker, the 
+ * full name of the company, the current mentions and the mentions 
  * 24 hours ago, and the current upvotes and the upvotes 24 hours ago.
  * @author MatthewSheldon
  */
-public class Crypto implements Comparable<Crypto> {
+public class Stock implements Comparable<Stock> {
 	/**
-	 * The rank of the Crypto
+	 * The rank of the Stock
 	 */
 	private byte rank; 
 	
 	/**
-	 * The ticker of the Crypto
+	 * The ticker of the Stock
 	 */
 	private String ticker;
 	
 	/**
-	 * The full name of the Crypto
+	 * The full name of the Stock
 	 */
 	private String name;
 	
 	/**
-	 * The number of mentions of the Crypto
+	 * The number of mentions of the Stock
 	 */
 	private long mentions;
 	
 	/**
-	 * The number of upvotes of the Crypto
+	 * The number of upvotes of the Stock
 	 */
 	private long upvotes;
 	
 	/**
-	 * The rank of the Crypto 24 hours ago
+	 * The rank of the Stock 24 hours ago
 	 */
 	private int rank_24h_ago;
 	
 	/**
-	 * The number of mentions of the Crypto 24 hours ago
+	 * The number of mentions of the Stock 24 hours ago
 	 */
 	private long mentions_24h_ago;
 	
 	/**
-	 * Constructs a Crypto object with the passed parameters
+	 * Constructs a Stock object with the passed parameters
 	 * @param rank			The rank on Reddit
 	 * @param ticker		The ticker
 	 * @param name			The full name
@@ -52,7 +54,7 @@ public class Crypto implements Comparable<Crypto> {
 	 * @param rank24h		The rank on Reddit 24 hours ago
 	 * @param mentions24h	The number of mentions on Reddit 24 hours ago
 	 */
-	public Crypto(byte rank, String ticker, String name, long mentions, long upvotes, int rank24h, long mentions24h) {
+	public Stock(byte rank, String ticker, String name, long mentions, long upvotes, int rank24h, long mentions24h) {
 		this.rank = rank;
 		this.ticker = ticker;
 		this.name = name;
@@ -112,7 +114,7 @@ public class Crypto implements Comparable<Crypto> {
 	}
 	
 	@Override
-	public int compareTo(Crypto other) {
+	public int compareTo(Stock other) {
 		return Byte.compare(this.rank, other.rank);
 	}
 	
