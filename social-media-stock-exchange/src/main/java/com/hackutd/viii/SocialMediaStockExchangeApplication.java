@@ -68,7 +68,6 @@ public class SocialMediaStockExchangeApplication {
 				out.print(String.format("%8s |", "[N/A]"));
 				out.println();
 			}
-			System.out.println(stocks.get(i).getStock().getStats());
 		}
 		out.close();
 	}
