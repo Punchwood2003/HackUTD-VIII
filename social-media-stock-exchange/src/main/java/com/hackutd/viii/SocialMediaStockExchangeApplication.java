@@ -105,12 +105,5 @@ public class SocialMediaStockExchangeApplication {
 		}
 		return stockList;
 	}
-
-
-
-
-
-
-
 }
 
